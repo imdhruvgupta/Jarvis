@@ -1,0 +1,16 @@
+{
+  "name": "selenium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha --recursive --timeout 100000 test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^86.0.0",
+    "mocha": "^8.2.0",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
