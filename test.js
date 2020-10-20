@@ -1,6 +1,5 @@
 require('chromedriver');
 const assert=require('assert');
-const { start } = require('repl');
 const {Builder, Key, By, until} = require('selenium-webdriver');
 
 describe('Checkout Google.com', () => {
@@ -12,90 +11,46 @@ describe('Checkout Google.com', () => {
     });
 
     it('Search on google', async () => {
-        await driver.get('https://app.clickup.com/login');
+        //load the url
+         await driver.get('https://app.clickup.com/login');
 
-        // Enter keywords and click enter
-        await driver.findElement(By.id('email-input')).sendKeys('kapiljhalani009@gmail.com');
-        await driver.findElement(By.id('password-input')).sendKeys('Khandelwal@08');
+        // send email_id// after(() => driver && driver.quit());
+         await driver.findElement(By.id('email-input')).sendKeys('kapiljhalani009@gmail.com');
 
-        await driver.findElement(By.id('login-submit')).click();
+        //send password
+         await driver.findElement(By.id('password-input')).sendKeys('Khandelwal@08');
 
+        //click button to login
+         await driver.findElement(By.id('login-submit')).click();
 
-        //driver.manage().timeout().implicitlyWait(100000, TimeUnit.SECONDS);
-
-       // while(true);
-      // driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
- 
-       
-
-
-        // WebDriverWait wait = new WebDriverWait(driver, 40);
-        // wait.until(ExpectedConditions.elementToBeClickable(By.id("urelementid")));
-
-
-
-        // Wait for the results box by id;
-        
+        //wait for loading the page
          await driver.wait(until.elementLocated(By.className('cu-dropdown_left cu-dropdown ng-star-inserted')), 100000)
-         await driver.findElement(By.className('cu-dropdown_left cu-dropdown ng-star-inserted')).click();
 
+         //load the url
          await driver.get('https://app.clickup.com/3302573/settings/team/3302573/import');
+
+         //wait for page to laod
          await driver.wait(until.elementLocated(By.className('cu-sts__title cu-sts__title_top ng-star-inserted')), 100000)
 
+         //load the url
          await driver.get('https://app.clickup.com/3302573/settings/team/3302573/import?import=false');
+
+         //wait for the page load
          await driver.wait(until.elementLocated(By.className('billing__title-prorate')), 100000)
 
-         let startButton = await driver.findElement(By.className('cu-btn')).click()
-        //  let startButtonText = await startButton.getText();
-         
-        //  //Export all of your data for your workspace
+         //click on start button 
+         await driver.findElement(By.className('cu-btn')).click()
 
-        // //  console.log(startButtonText);
-        //  startButton.click();
+         //implicit wait for 15 second
+         await driver.manage().setTimeouts( { implicit: 15000 } );
 
-         await driver.manage().setTimeouts( { implicit: 10000 } );
+         //click on download button
+         await driver.findElement(By.className('cu-btn')).click()
 
-         //await driver.wait(until.elementLocated(By.className('billing__title-prorate')), 100000)
-
-        let text=driver.findElement(By.className('s-prorate')).getText();
-
-        //  let startButto = await driver.findElement(By.className('cu-btn'));
-        //  let startButtonTex = await startButto.getText();
-         console.log(text);
-        // if(startButtonTex=='Download Export'){
-        //     console.log('hey')
-        // await driver.findElement(By.className('cu-btn')).click();
-        // }startButtonTex
-
-        //  (startButtonText='Download Export'){
-        //     startButton.click();
-        //  }
-
-
-       //  startButton.click();
-
-        //  while(startButton.getText()!='Download Export');
-        //  await driver.findElement(By.className('cu-btn')).click();
-
-         
-
-
-         
-        while(true);
-
-
-
-
-
-
-
-         
-
-       //  await driver.get('https://www.google.com');
-        // let title = await driver.getTitle();
-        // assert.equal(title, 'Coding Blocks - Google Search');
+         //set timeout for 30 sec 
+         setTimeout(() => {
+            driver && driver.quit()
+         }, 30000)
 
     });
-
-    after(() => driver && driver.quit());
 })
